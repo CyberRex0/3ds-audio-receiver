@@ -1,0 +1,12 @@
+[project]
+name = "3ds-audio-receiver-tools"
+version = "0.1.0"
+description = "Python sender tools for the 3DS Audio Receiver"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "sounddevice; sys_platform == 'win32'",
+]
+
+[tool.uv]
+package = false

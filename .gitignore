@@ -1,0 +1,13 @@
+/build/
+/*.3dsx
+/*.elf
+/*.map
+/*.smdh
+__pycache__/
+*.pyc
+*.log
+.venv
+*.wav
+*.mp3
+*.m4a
+*.flac

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "ax": {
+      "source": "yusukebe/ax",
+      "sourceType": "github",
+      "skillPath": "skills/ax/SKILL.md",
+      "computedHash": "20dec0a188183e1fcfb0d952d5fbaf337183ae9fd445b9ea74c1535c7991e3be"
+    }
+  }
+}
