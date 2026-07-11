@@ -25,6 +25,8 @@ typedef struct {
     uint64_t notice_until;
 } Application;
 
+#define UI_STATUS_UPDATE_FRAMES 10
+
 static void capture_debug_sample(Application *app, bool force) {
     uint64_t now = osGetTime();
     if (!app->debug_log.samples || (!force && !debug_log_sample_due(&app->debug_log, now)))
@@ -260,6 +262,10 @@ int main(void) {
     app.staged = app.applied;
     if (!app.error[0]) start_runtime(&app);
 
+    UiViewModel view;
+    build_view_model(&app, &view);
+    unsigned int status_update_frame = 0;
+
     while (aptMainLoop()) {
         hidScanInput();
         u32 keys = hidKeysDown();
@@ -267,8 +273,11 @@ int main(void) {
         handle_input(&app, keys);
         capture_debug_sample(&app, false);
 
-        UiViewModel view;
-        build_view_model(&app, &view);
+        status_update_frame++;
+        if (status_update_frame >= UI_STATUS_UPDATE_FRAMES) {
+            build_view_model(&app, &view);
+            status_update_frame = 0;
+        }
         ui_render(&app.ui, &view);
     }
 
